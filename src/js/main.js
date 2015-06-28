@@ -438,7 +438,7 @@ $document.ready(function() {
 						fileSystem.getActiveFile().close();
 					});
 
-					editor.body.on("dragenter dragover dragleave drop", fileSystem.dndHandler.bind(fileSystem));
+					$body.on("dragenter dragover dragleave drop", fileSystem.dndHandler.bind(fileSystem));
 				},
 
 				chooseEntries: function() {
@@ -958,7 +958,7 @@ $document.ready(function() {
 						fileMenu.scrollActiveItemIntoView();
 					});
 
-					editor.body.on("fullscreen.editor", function() {
+					$body.on("fullscreen.editor", function() {
 						fileMenu.updateNavControlsVis();
 						fileMenu.scrollActiveItemIntoView();
 					});

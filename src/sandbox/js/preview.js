@@ -3,8 +3,7 @@ var $window = $(window);
 $window.on("load", function() {
 	"use strict";
 	
-	var body = $(document.body),
-		wasLastHtmlUpdateAfterUserInput = null,
+	var wasLastHtmlUpdateAfterUserInput = null,
 
 		// Post messages to the parent window
 		messageParent = function(data) {
@@ -23,7 +22,7 @@ $window.on("load", function() {
 		// Send the iframe's height to the parent window
 		postHeight = function() {
 			messageParent({
-				height: body.height(),
+				height: $body.height(),
 				isAfterUserInput: wasLastHtmlUpdateAfterUserInput
 			});
 		},
@@ -31,14 +30,14 @@ $window.on("load", function() {
 		// Send the iframe's height and text to the parent window
 		postAll = function() {
 			messageParent({
-				height: body.height(),
-				text: body.text(),
+				height: $body.height(),
+				text: $body.text(),
 				isAfterUserInput: wasLastHtmlUpdateAfterUserInput
 			});
 		},
 
 		updateHtml = function(html, isAfterUserInput) {
-			body.html(html);
+			$body.html(html);
 			wasLastHtmlUpdateAfterUserInput = isAfterUserInput;
 
 			postAll();
@@ -58,7 +57,7 @@ $window.on("load", function() {
 		},
 
 		updateFontSize = function(cssIncrement) {
-			updateElFontSize(body, cssIncrement);
+			updateElFontSize($body, cssIncrement);
 			postHeight();
 		};
 	
@@ -88,7 +87,7 @@ $window.on("load", function() {
 		}
 	});
 	
-	body.on("click", function(e) {
+	$body.on("click", function(e) {
 		if (e.target.nodeName != "A") return; // Not using jQuery for event delegation since it lead to an issue where middle mouse clicks didn't trigger "click" events
 
 		e.preventDefault();
