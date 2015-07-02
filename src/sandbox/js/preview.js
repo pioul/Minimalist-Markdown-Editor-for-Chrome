@@ -65,6 +65,9 @@ $window.on("load", function() {
 		resize: postHeight,
 		message: receiveMessage,
 
+		// Post a message to the parent window with interesting properties of all keydown events
+		// to dispatch equivalent synthetic events there, since the original ones don't naturally
+		// reach that parent window.
 		keydown: function(e) {
 			messageParent({
 				// Only post event props we care about
@@ -84,6 +87,22 @@ $window.on("load", function() {
 			// but it's the best one around.
 			// Currently applies to: CTRL (mirrored by META) + W
 			if ((e.ctrlKey || e.metaKey) && e.keyCode == 87) e.preventDefault();
+		},
+
+		// Post a message to the parent window with interesting properties of all wheel events
+		// to dispatch equivalent synthetic events there, since the original ones don't naturally
+		// reach that parent window.
+		wheel: function(e) {
+			messageParent({
+				// Only post event props we care about
+				wheelEventObj: {
+					type: e.type,
+					ctrlKey: e.ctrlKey,
+					metaKey: e.metaKey,
+					deltaY: e.originalEvent.deltaY,
+					isSynthetic: true
+				}
+			});
 		}
 	});
 	

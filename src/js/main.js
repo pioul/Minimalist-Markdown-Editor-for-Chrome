@@ -26,12 +26,17 @@ $document.ready(function() {
 				"close.modal": app.focusMarkdownSource.bind(app)
 			});
 
-			// In the Chrome app, the preview panel requires to be in a sandboxed iframe, hence isn't loaded immediately with the rest of the document
-			this.markdownPreviewIframe.on("load", function() {
-				app.isMarkdownPreviewIframeLoaded = true;
-				app.markdownPreviewIframeLoadEventCallbacks.fire();
+			this.markdownPreviewIframe.on({
+				// In the Chrome app, the preview panel requires to be in a sandboxed iframe, 
+				// hence isn't loaded immediately with the rest of the document
+				load: function() {
+					app.isMarkdownPreviewIframeLoaded = true;
+					app.markdownPreviewIframeLoadEventCallbacks.fire();
 
-				app.markdownPreviewIframe.off("load");
+					app.markdownPreviewIframe.off("load");
+				},
+
+				wheel: app.filterWheelEvent.bind(app)
 			});
 		},
 
@@ -49,6 +54,7 @@ $document.ready(function() {
 			if (data.keydownEventObj) this.markdownPreviewIframe.trigger(data.keydownEventObj);
 			if (data.hasOwnProperty("scrollMarkdownPreviewIntoViewAtOffset")) this.scrollMarkdownPreviewIntoViewAtOffset(data.scrollMarkdownPreviewIntoViewAtOffset);
 			if (data.hasOwnProperty("scrollMarkdownPreviewToOffset")) this.scrollMarkdownPreviewToOffset(data.scrollMarkdownPreviewToOffset);
+			if (data.wheelEventObj) this.markdownPreviewIframe.trigger(data.wheelEventObj);
 		},
 
 		focusMarkdownSource: function() {
@@ -228,6 +234,13 @@ $document.ready(function() {
 			this.messageSandbox({
 				fontSizeCssIncrement: cssIncrement
 			});			
+		},
+
+		// Chrome sometimes also dispatches a wheel event into the parent window when scrolling
+		// in the child frame. Since we're using synthetic events to listen to wheel events in
+		// the frame and don't want duplicate events, we prevent these duplicates from bubbling.
+		filterWheelEvent: function(e) {
+			if (!e.isSynthetic) e.stopPropagation();
 		}
 
 	};
