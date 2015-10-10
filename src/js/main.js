@@ -1124,7 +1124,7 @@ $document.ready(function() {
 							break;
 						case "jump-number":
 							var openFileId,
-								number = e.originalEvent.keyCode,
+								number = e.keyCode,
 								openFileIdIndexMap = new Map([
 									[keyCode[1], 1],
 									[keyCode[2], 2],
