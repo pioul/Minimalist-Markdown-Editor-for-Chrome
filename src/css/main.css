@@ -1,13 +1,3 @@
-body:before {
-	content: "";
-	position: absolute;
-	top: 0;
-	right: 0;
-	left: 0;
-	height: 2px;
-	background: #f7f7f7;
-}
-
 #preview-iframe {
 	width: 100%;
 	border: 0;
@@ -26,7 +16,7 @@ body:before {
 	height: 18px;
 	margin-right: 1px;
 	padding: 2px 20px 0 8px;
-	color: #888;
+	color: var(--file-menu-item-color);
 	font-size: 11px;
 	line-height: 18px;
 	cursor: pointer;
@@ -38,7 +28,7 @@ body:before {
 }
 
 .topbar .file-menu .file-menu-item.active {
-	border-bottom-color: #b5b5b5;
+	border-bottom-color: var(--file-menu-item-enabled-border-color);
 }
 
 .topbar .file-menu .file-menu-item:before {
@@ -48,7 +38,7 @@ body:before {
 	right: -1px;
 	bottom: 2px;
 	width: 1px;
-	background: #e7e7e7;
+	background: var(--file-menu-item-border-color);
 }
 
 .topbar .file-menu .file-menu-item:last-of-type:before {
@@ -69,13 +59,13 @@ body:before {
 	line-height: 12px;
 	font-size: 13px;
 	text-align: center;
-	color: #b5b5b5;
+	color: var(--file-menu-item-close-color);
 	border-radius: 6px;
 }
 
 .topbar .file-menu .file-menu-item .close:hover {
-	color: #888;
-	background: #e7e7e7;
+	color: var(--file-menu-item-close-hover-color);
+	background: var(--file-menu-item-close-hover-bg-color);
 }
 
 .topbar .file-menu .file-menu-item.has-changed .close::before {
@@ -85,8 +75,8 @@ body:before {
 	right: 0;
 	width: 5px;
 	height: 5px;
-	background: #b5b5b5;
-	border: 4px solid #fff;
+	background: var(--file-menu-item-edited-close-bg-color);
+	border: 4px solid var(--file-menu-item-edited-close-border-color);
 	border-radius: 6.5px;
 }
 
@@ -118,7 +108,7 @@ body:before {
 	margin: 2px;
 	border-radius: 2px;
 	text-indent: 2px;
-	background: #eaeaea;
+	background: var(--top-bar-arrow-bg-color);
 }
 
 .topbar .buttons-container .button.icon-chevron-left {
@@ -127,7 +117,7 @@ body:before {
 
 .topbar .buttons-container .button.icon-chevron-left:active,
 .topbar .buttons-container .button.icon-chevron-right:active {
-	background: #e1e1e1;
+	background: var(--top-bar-arrow-active-bg-color);
 }
 
 .topbar .buttons-container .button.icon-chevron-left:before {
@@ -150,7 +140,7 @@ body:before {
 #drag-mask {
 	display: none;
 	z-index: 200;
-	background-color: rgba(255, 255, 255, .8);
+	background-color: var(--drag-mask-bg-color);
 }
 
 #drag-mask.visible {
@@ -163,7 +153,7 @@ body:before {
 	align-items: center;
 	margin: 20px;
 	font-size: 30px;
-	color: #999;
-	border: 4px dashed #ddd;
+	color: var(--drag-mask-color);
+	border: 4px dashed var(--drag-mask-border-color);
 	pointer-events: none;
 }

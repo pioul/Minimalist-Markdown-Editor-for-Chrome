@@ -13,8 +13,8 @@
 	left: 50%;
 	width: 300px;
 	margin-left: -150px;
-	background: #fff;
-	border: 1px solid #b5b5b5;
+	background: var(--modal-bg-color);
+	border: 1px solid var(--modal-border-color);
 	border-radius: 2px;
 }
 
@@ -35,20 +35,20 @@
 	padding: 0 5px;
 	font-size: 12px;
 	text-decoration: none;
-	color: #888;
+	color: var(--modal-button-color);
 	border-radius: 2px;
-	border: 1px solid #b5b5b5;
+	border: 1px solid var(--modal-button-border-color);
 }
 
 .modal .buttons .button.button-primary {
-	color: #333;
-	border-color: #888;
+	color: var(--modal-button-primary-color);
+	border-color: var(--modal-button-primary-border-color);
 	font-weight: bold;
 }
 
 .modal .buttons .button:active,
 .modal .buttons .button:focus {
-	background: #f7f7f7;
+	background: var(--modal-button-active-bg-color);
 }
 
 .modal .buttons .decoy {
