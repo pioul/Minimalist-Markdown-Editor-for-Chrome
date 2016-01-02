@@ -17,6 +17,7 @@ $window.on("load", function() {
 			if (data.hasOwnProperty("html")) updateHtml(data.html, data.isAfterUserInput);
 			if (data.hasOwnProperty("scrollLineIntoView")) scrollLineIntoView(data.scrollLineIntoView, data.lineCount);
 			if (data.hasOwnProperty("fontSizeCssIncrement")) updateFontSize(data.fontSizeCssIncrement);
+			if (data.hasOwnProperty("themeStylesheet")) useTheme(data.themeStylesheet);
 		},
 
 		// Send the iframe's height to the parent window
@@ -59,6 +60,10 @@ $window.on("load", function() {
 		updateFontSize = function(cssIncrement) {
 			updateElFontSize($body, cssIncrement);
 			postHeight();
+		},
+
+		useTheme = function(stylesheet) {
+			document.getElementById("theme").setAttribute("href", stylesheet);
 		};
 	
 	$window.on({

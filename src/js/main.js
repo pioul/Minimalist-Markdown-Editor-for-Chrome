@@ -111,7 +111,7 @@ $document.ready(function() {
 
 			// Retrieve locally stored data to be sent to editor
 			// For the same reason the "markdown" key is hijacked when saving the editor's contents, it's not included here so that the app can handle the restoration of the editor's contents itself
-			chrome.storage.local.get(["isSyncScrollDisabled", "isFullscreen", "activePanel", "fontSizeFactor"], function(restoredItems) {
+			chrome.storage.local.get(["isSyncScrollDisabled", "isFullscreen", "activePanel", "fontSizeFactor", "theme"], function(restoredItems) {
 				editorRestoredItems = restoredItems;
 				tryRunningCallback();
 			});
@@ -234,6 +234,14 @@ $document.ready(function() {
 			this.messageSandbox({
 				fontSizeCssIncrement: cssIncrement
 			});			
+		},
+
+		useTheme: function(stylesheet) {
+			editor.themeSelector.setAttribute("href", stylesheet);
+
+			this.messageSandbox({
+				themeStylesheet: stylesheet
+			});	
 		},
 
 		// Chrome sometimes also dispatches a wheel event into the parent window when scrolling
